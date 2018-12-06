@@ -1,14 +1,8 @@
-from parse_movies import ParseMovies
+from stories import Stories
 
 
 if __name__ == "__main__":
-    pm = ParseMovies()
+    stories = Stories()
 
-    for m in pm.get_movies():
-        for segment in m.get_script().get_segments():
-            print(segment)
-            print("\n\n\n------------------------------------------------------\n\n\n")
-
-        print(len(m.get_script().get_segments()))
-
-        break
+    for story in stories.get_stories():
+        print(story)

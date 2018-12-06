@@ -4,8 +4,8 @@ from book import Book
 import re
 
 
-class Movie:
-    def __init__(self, name, regex):
+class Story:
+    def __init__(self, name, script_regex, book_regex):
         self.ROOT_DIRECTORY = "../"
         self.DATA_PATH = self.ROOT_DIRECTORY + "data/test/"
         self.SPACE = ' '
@@ -16,10 +16,10 @@ class Movie:
         path = self.get_path()
 
         # get script
-        self.script = Script(path, regex)
+        self.script = Script(path, script_regex)
 
         # get book
-        self.book = Book(path)
+        self.book = Book(path, book_regex)
 
     def strip_nonalphanumeric(self):
         regex = "([^\s\w]|_)+"

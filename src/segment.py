@@ -14,3 +14,6 @@ class Segment:
 
     def get_lines(self):
         return self.lines
+
+    def get_dialogue(self):
+        return self.dialogue
