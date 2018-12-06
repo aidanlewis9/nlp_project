@@ -1,5 +1,5 @@
-from src.utilities.read_file import read_file
-from src.utilities.match import match
+from utilities.read_file import read_file
+from utilities.match import match
 
 
 class Book:

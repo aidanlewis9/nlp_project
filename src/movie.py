@@ -1,12 +1,12 @@
-from src.parseMovies.script import Script
-from src.parseMovies.book import Book
+from script import Script
+from book import Book
 
 import re
 
 
 class Movie:
     def __init__(self, name, regex):
-        self.ROOT_DIRECTORY = "../../"
+        self.ROOT_DIRECTORY = "../"
         self.DATA_PATH = self.ROOT_DIRECTORY + "data/test/"
         self.SPACE = ' '
         self.UNDERSCORE = '_'

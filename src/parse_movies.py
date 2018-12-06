@@ -1,4 +1,4 @@
-from src.parseMovies.movie import Movie
+from movie import Movie
 
 
 class ParseMovies:
