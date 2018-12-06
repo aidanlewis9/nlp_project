@@ -1,31 +1,3 @@
-                                "THE TALENTED MR. RIPLEY"
-
-                                      Screenplay by
-
-                                    Anthony Minghella
-
-                                  Based on the novel by
-
-                                    Patricia Highsmith
-
-                                    1st November 1999
-
-
-
-               1958
-
-               PROLOGUE: INT. RIPLEY'S CABIN. EVENING.
-
-               Fade up on Ripley, as in the final scene of the film, sitting,
-               desolate in a ship's cabin. The camera rotates around his
-               face, which begins in light and ends in darkness.
-
-                                     RIPLEY (O/S)
-                         If I could just go back. If I could
-                         rub everything out. Starting with
-                         myself. Starting with borrowing a
-                         jacket.
-
                EXT. CENTRAL PARK WEST TERRACE. EARLY EVENING.
 
                Ripley is at the piano, accompanying FRAN, a young soprano.
@@ -398,7 +370,7 @@
 
                They've arrived at a crossroads on the stairs -- graphic
                signs explain the choices: one way for Buses, Taxis and exits --
-               the other for Trains: ROMA, VENEZIA, MILANO. They're going 
+               the other for Trains: ROMA, VENEZIA, MILANO. They're going
                in different directions.
 
                                      MEREDITH
@@ -5360,5 +5332,3 @@
                Through the porthole the weather's changing as the light
                dies. There's a swell as the horizon rises and falls in the
                round glass. Ripley, alone, in a nightmare of his own making.
-
-                                         THE END

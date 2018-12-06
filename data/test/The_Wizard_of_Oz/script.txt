@@ -1,32 +1,4 @@
-The Wizard Of Oz -- Movie Scripts
-
-
-
-                      The Wizard Of Oz
-
-                             by
-                        Noel Langley
-                      Florence Ryerson
-                   and Edgar Allen Woolf
-
-                 Cutting Continuity Script
-                 Taken From Printer's Dupe
-                Last revised March 15, 1939
-
-
-FADE IN -- Title:
-
-For nearly forty years this story has given faithful service to the Young
-in Heart; and Time has been powerless to put its kindly philosophy out of
-fashion.
-
-To those of you who have been faithful to it in return
-
-...and to the Young in Heart --- we dedicate this picture.
-
-								FADE OUT:
-
-MS -- Dorothy stoops down to Toto -- speaks to him -- then runs down road
+MS - Int. -- Dorothy stoops down to Toto -- speaks to him -- then runs down road
 to b.g. -- Toto following --
 
 				DOROTHY
@@ -7262,7 +7234,3 @@ eyes -- Aunt Em rises -- puts her arm around Dorothy -
 		ever, ever again, because I love you all!
 		And -- Oh, Auntie Em -- there's no place
 		like home!
-
-								FADE OUT:
-
-			FADE IN -- THE END -- FADE OUT
