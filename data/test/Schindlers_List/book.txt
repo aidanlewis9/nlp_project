@@ -1,4 +1,4 @@
-PROLOGUE 
+PROLOGUE
 
 Autumn, 1943
 
@@ -22939,43 +22939,3 @@ Bejski, Helen Hirsch, Jakob Sternberg,
 Juda Dresner.
 
 He was mourned on every continent.
-
-APPENDIX
-
-SS Ranks and Their
-
-Army Equivalents
-
-COMMISSIONED RANKS
-
-Oberst-gruppenf@uhrer: general
-
-Obergruppenf@uhrer: lieutenant general
-
-Gruppenf@uhrer: major general
-
-Brigadef@uhrer: brigadier general
-
-Oberf@uhrer: (no army equivalent)
-
-Standartenf@uhrer: colonel
-
-Obersturmbannf@uhrer: lieutenant colonel
-
-Sturmbannf@uhrer: major
-
-Hauptsturmf@uhrer: captain
-
-Obersturmf@uhrer: first lieutenant
-
-Untersturmf@uhrer: second lieutenant
-
-NONCOMMISSIONED RANKS
-
-Oberscharf@uhrer: a senior noncommissioned
-
-rank
-
-Unterscharf@uhrer: equivalent to sergeant
-
-Rottenf@uhrer: equivalent to corporal
