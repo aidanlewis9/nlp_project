@@ -2,7 +2,7 @@ from story_controller import StoryController
 
 
 if __name__ == "__main__":
-    stories = StoryController()
+    story_controller = StoryController()
 
-    for story in stories.stories:
+    for story in story_controller.stories:
         print(story)
