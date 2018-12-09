@@ -1,5 +1,6 @@
 from script import Script
 from book import Book
+from utilities.string import strip_nonalphanumeric
 
 import re
 
@@ -26,7 +27,7 @@ class Story:
         return re.compile(regex).sub('', self.name)
 
     def format_movie_name(self):
-        return self.strip_nonalphanumeric().replace(self.SPACE, self.UNDERSCORE)
+        return strip_nonalphanumeric(self.name).replace(self.SPACE, self.UNDERSCORE)
 
     def get_path(self):
         return self.DATA_PATH + self.format_movie_name() + self.FORWARD_SLASH
