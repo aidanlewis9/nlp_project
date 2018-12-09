@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-class Segment:
+class Scene:
     def __init__(self):
         self.lines = list()
         self.dialogue = defaultdict(list)

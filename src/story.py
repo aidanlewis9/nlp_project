@@ -31,6 +31,3 @@ class Story:
     def get_path(self):
         return self.DATA_PATH + self.format_movie_name() + self.FORWARD_SLASH
 
-    def get_script(self):
-        return self.script
-

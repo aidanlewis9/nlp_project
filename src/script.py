@@ -1,7 +1,6 @@
-from segment import Segment
-from utilities.read_file import read_file
-from utilities.match import match
-from utilities.is_empty import is_empty
+from scene import Scene
+from utilities.file import read_file
+from utilities.string import match, is_empty
 
 
 class Script:
@@ -15,24 +14,24 @@ class Script:
         self.regex = regex
         self.path = path + self.PATH_SUFFIX
 
-        self.segments = list()
+        self.scenes = list()
 
-        self.segment_script()
+        self.get_scenes()
         self.extract_dialogue()
 
-    def segment_script(self):
-        segment = Segment()
+    def get_scenes(self):
+        scene = Scene()
 
         for line in read_file(self.path):
             if match(self.regex, line):
-                self.segments.append(segment)
-                segment = Segment()
+                self.scenes.append(scene)
+                scene = Scene()
 
-            segment.add_line(line)
+            scene.add_line(line)
 
     def extract_dialogue(self):
-        for segment in self.segments:
-            lines = segment.get_lines()
+        for scene in self.scenes:
+            lines = scene.lines
             n = len(lines) - 1
             i = 0
 
@@ -47,12 +46,9 @@ class Script:
                         dialogue += lines[i] + self.NEWLINE
                         i += 1
 
-                    segment.add_dialogue(character, dialogue)
+                    scene.add_dialogue(character, dialogue)
 
                 i += 1
-
-    def get_segments(self):
-        return self.segments
 
 
 

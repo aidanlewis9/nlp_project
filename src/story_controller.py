@@ -1,11 +1,11 @@
 from story import Story
 
 
-class Stories:
+class StoryController:
     def __init__(self):
         self.titles = ["Frankenstein", "Jurassic Park",
                         # "No Country for Old Men",
-                       "Schindler's List","The Bourne Supremacy", "The Shining",
+                       "Schindler's List", "The Bourne Supremacy", "The Shining",
                         "The Talented Mr. Ripley", "The Wizard of Oz"
         ]
 
@@ -21,8 +21,8 @@ class Stories:
             "Frankenstein": "(Chapter \d)",
             "Jurassic Park": "(ITERATION)",
             # "No Country for Old Men": "",
-            "Schindler's List": "((PROLOGUE|CHAPTER.) )"
-            # "The Bourne Supremacy": "",
+            "Schindler's List": "((PROLOGUE|CHAPTER.) )",
+            "The Bourne Supremacy": ""
             # "The Shining": "",
             # "The Talented Mr. Ripley": "",
             # "The Wizard of Oz": ""
@@ -35,6 +35,3 @@ class Stories:
         for title in self.titles:
             story = Story(title, self.script_regexs[title], self.book_regexs[title])
             self.stories.append(story)
-
-    def get_stories(self):
-        return self.stories

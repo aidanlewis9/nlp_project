@@ -1,8 +1,8 @@
-from stories import Stories
+from story_controller import StoryController
 
 
 if __name__ == "__main__":
-    stories = Stories()
+    stories = StoryController()
 
-    for story in stories.get_stories():
+    for story in stories.stories:
         print(story)

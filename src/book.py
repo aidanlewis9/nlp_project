@@ -1,6 +1,6 @@
-from utilities.read_file import read_file
-from utilities.match import match
-from segment import Segment
+from utilities.file import read_file
+from utilities.string import match
+from scene import Scene
 
 
 class Book:
@@ -8,42 +8,55 @@ class Book:
         self.PATH_SUFFIX = "book.txt"
         self.EMPTY_STRING = ""
         self.NEWLINE = '\n'
+        self.QUOTE = '"'
 
-        self.segments = list()
+        self.scenes = list()
         self.path = path + self.PATH_SUFFIX
         self.regex = regex
 
-        self.segment_book()
+        self.all_scenes = list()
+        self.valid_scenes = list()
 
-    def segment_book(self):
-        segment = Segment()
+        self.get_scenes()
+
+    def get_scenes(self):
+        scene = Scene()
 
         for line in read_file(self.path):
             # print(line)
             if match(self.regex, line):
                 print("matched:", line)
-                self.segments.append(segment)
-                segment = Segment()
+                self.all_scenes.append(scene)
+                scene = Scene()
 
-            segment.add_line(line)
-        for segment in self.segments:
+            scene.add_line(line)
+
+        for scene in self.all_scenes:
             print('------------------------------------------------------')
             # print(segment.lines)
-            print(segment)
+            print(scene)
 
-    def get_segments(self):
-        return self.segments
+    def extract_dialogue(self):
+        for scene in self.all_scenes:
+            curr_quote = self.EMPTY_STRING
+            in_quote = False
 
-    # def extract_dialogue(self):
-    #     dialogue = list()
-    #
-    #     for segment in self.segments:
-    #         curr_quote = ""
-    #         in_quote = False
-    #
-    #         for char in segment:
-    #             if char == self.QUOTE:
-    #                 in_quote = not in_quote
-    #
-    #             if in_quote:
-    #                 curr_quote += char
+            for line in scene.lines:
+                for char in line:
+                    if char == self.QUOTE and not in_quote:
+                        print("START", char)
+                        in_quote = True
+                    elif char == self.QUOTE and in_quote:
+                        print("END")
+                        scene.add_dialogue(None, curr_quote)
+                        curr_quote = self.EMPTY_STRING
+                        in_quote = False
+
+                    if in_quote:
+                        print(char)
+                        curr_quote += char
+                    else:
+                        print()
+
+            if scene.is_scene():
+                self.valid_scenes.append(scene)
