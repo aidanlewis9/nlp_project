@@ -1,10 +1,11 @@
 from utilities.file import read_file
 from utilities.string import match
 from scene import Scene
+from parser import Parser
 
 
 class Book:
-    def __init__(self, path, regex):
+    def __init__(self, path, regex, title):
         self.PATH_SUFFIX = "book.txt"
         self.EMPTY_STRING = ""
         self.NEWLINE = '\n'
@@ -13,6 +14,7 @@ class Book:
         self.scenes = list()
         self.path = path + self.PATH_SUFFIX
         self.regex = regex
+        self.parser = Parser(title)
 
         self.all_scenes = list()
         self.valid_scenes = list()
@@ -21,20 +23,20 @@ class Book:
 
     def get_scenes(self):
         scene = Scene()
-
+        print(self.path)
         for line in read_file(self.path):
-            # print(line)
             if match(self.regex, line):
                 print("matched:", line)
+                scene.add_sentences(scene.sentence_string)
+                print(scene.sentences)
                 self.all_scenes.append(scene)
                 scene = Scene()
+            self.parser.parse_book(line, scene)
 
-            scene.add_line(line)
-
-        for scene in self.all_scenes:
-            print('------------------------------------------------------')
-            # print(segment.lines)
-            print(scene)
+        # for scene in self.all_scenes:
+        #     print('------------------------------------------------------')
+        #     # print(scene.lines)
+        #     print(scene)
 
     def extract_dialogue(self):
         for scene in self.all_scenes:
