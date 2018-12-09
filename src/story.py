@@ -22,10 +22,6 @@ class Story:
         # get book
         self.book = Book(path, book_regex)
 
-    def strip_nonalphanumeric(self):
-        regex = "([^\s\w]|_)+"
-        return re.compile(regex).sub('', self.name)
-
     def format_movie_name(self):
         return strip_nonalphanumeric(self.name).replace(self.SPACE, self.UNDERSCORE)
 
