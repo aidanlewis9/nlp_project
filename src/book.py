@@ -1,5 +1,6 @@
 from utilities.read_file import read_file
 from utilities.match import match
+from segment import Segment
 
 
 class Book:
@@ -12,15 +13,23 @@ class Book:
         self.path = path + self.PATH_SUFFIX
         self.regex = regex
 
+        self.segment_book()
+
     def segment_book(self):
-        segment = self.EMPTY_STRING
+        segment = Segment()
 
         for line in read_file(self.path):
+            # print(line)
             if match(self.regex, line):
+                print("matched:", line)
                 self.segments.append(segment)
-                segment = self.EMPTY_STRING
+                segment = Segment()
 
-            segment += line + self.NEWLINE
+            segment.add_line(line)
+        for segment in self.segments:
+            print('------------------------------------------------------')
+            # print(segment.lines)
+            print(segment)
 
     def get_segments(self):
         return self.segments
