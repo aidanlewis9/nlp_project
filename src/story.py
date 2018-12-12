@@ -6,7 +6,7 @@ import re
 
 
 class Story:
-    def __init__(self, name, script_regex, book_regex):
+    def __init__(self, name, script_regex, book_regex, title):
         self.ROOT_DIRECTORY = "../"
         self.DATA_PATH = self.ROOT_DIRECTORY + "data/test/"
         self.SPACE = ' '
@@ -20,11 +20,10 @@ class Story:
         self.script = Script(path, script_regex)
 
         # get book
-        self.book = Book(path, book_regex)
+        self.book = Book(path, book_regex, title)
 
     def format_movie_name(self):
         return strip_nonalphanumeric(self.name).replace(self.SPACE, self.UNDERSCORE)
 
     def get_path(self):
         return self.DATA_PATH + self.format_movie_name() + self.FORWARD_SLASH
-
