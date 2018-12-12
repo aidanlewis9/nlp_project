@@ -7,11 +7,11 @@ class StoryController:
             "Frankenstein",
             "Jurassic Park",
             # "No Country for Old Men",
-            # "Schindler's List",
-            # "The Bourne Supremacy",
-            # "The Shining",
-            # "The Talented Mr. Ripley",
-            # "The Wizard of Oz"
+            "Schindler's List",
+            "The Bourne Supremacy",
+            "The Shining",
+            "The Talented Mr. Ripley",
+            "The Wizard of Oz"
         ]
 
         self.script_regexs = {
@@ -26,11 +26,11 @@ class StoryController:
             "Frankenstein": "(Chapter \d)",
             "Jurassic Park": "(.* ITERATION)",
             # "No Country for Old Men": "",
-            # "Schindler's List": "((PROLOGUE|CHAPTER|EPILOGUE).*)",
-            # "The Bourne Supremacy": "(([0-9]|[0-9][0-9])$)",
-            # "The Shining": "(<< [0-9]* >>)",
-            # "The Talented Mr. Ripley": "(Chapter *)",
-            # "The Wizard of Oz": "([0-9]*\. *)"
+            "Schindler's List": "((PROLOGUE|CHAPTER|EPILOGUE).*)",
+            "The Bourne Supremacy": "(([0-9]|[0-9][0-9])$)",
+            "The Shining": "(<< [0-9]* >>)",
+            "The Talented Mr. Ripley": "(Chapter *)",
+            "The Wizard of Oz": "([0-9]*\. *)"
         }
 
         self.stories = list()

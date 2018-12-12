@@ -23,12 +23,9 @@ class Book:
 
     def get_scenes(self):
         scene = Scene()
-        print(self.path)
         for line in read_file(self.path):
             if match(self.regex, line):
-                print("matched:", line)
                 scene.add_sentences(scene.sentence_string)
-                print(scene.sentences)
                 self.all_scenes.append(scene)
                 scene = Scene()
             self.parser.parse_book(line, scene)
