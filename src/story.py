@@ -2,8 +2,6 @@ from script import Script
 from book import Book
 from utilities.string import strip_nonalphanumeric
 
-import re
-
 
 class Story:
     def __init__(self, name, script_regex, book_regex, title):

@@ -23,6 +23,7 @@ class Book:
 
     def get_scenes(self):
         scene = Scene()
+
         for line in read_file(self.path):
             if match(self.regex, line):
                 scene.add_sentences(scene.sentence_string)

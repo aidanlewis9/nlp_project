@@ -14,7 +14,8 @@ class Script:
         self.regex = regex
         self.path = path + self.PATH_SUFFIX
 
-        self.scenes = list()
+        self.all_scenes = list()
+        self.valid_scenes = list()
 
         self.get_scenes()
         self.extract_dialogue()
@@ -24,13 +25,13 @@ class Script:
 
         for line in read_file(self.path):
             if match(self.regex, line):
-                self.scenes.append(scene)
+                self.all_scenes.append(scene)
                 scene = Scene()
 
             scene.add_line(line)
 
     def extract_dialogue(self):
-        for scene in self.scenes:
+        for scene in self.all_scenes:
             lines = scene.lines
             n = len(lines) - 1
             i = 0
@@ -49,6 +50,9 @@ class Script:
                     scene.add_dialogue(character, dialogue)
 
                 i += 1
+
+            if scene.is_scene():
+                self.valid_scenes.append(scene)
 
 
 

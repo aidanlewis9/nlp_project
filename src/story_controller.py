@@ -40,3 +40,11 @@ class StoryController:
         for title in self.titles:
             story = Story(title, self.script_regexs[title], self.book_regexs[title], title)
             self.stories.append(story)
+
+            for scene in story.script.scenes:
+                if len(scene.full_text) > 1000:
+                    scene.extract_named_entities()
+
+                    # break
+
+            break
