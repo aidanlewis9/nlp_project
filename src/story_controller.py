@@ -4,14 +4,14 @@ from story import Story
 class StoryController:
     def __init__(self):
         self.titles = [
-            "Frankenstein",
-            "Jurassic Park",
+            # "Frankenstein",
+            # "Jurassic Park",
             # "No Country for Old Men",
-            "Schindler's List",
-            "The Bourne Supremacy",
-            "The Shining",
+            # "Schindler's List",
+            # "The Bourne Supremacy",
+            # "The Shining",
             "The Talented Mr. Ripley",
-            "The Wizard of Oz"
+            # "The Wizard of Oz"
         ]
 
         self.script_regexs = {
@@ -23,14 +23,14 @@ class StoryController:
         }
 
         self.book_regexs = {
-            "Frankenstein": "(Chapter \d)",
-            "Jurassic Park": "(.* ITERATION)",
+            # "Frankenstein": "(Chapter \d)",
+            # "Jurassic Park": "(.* ITERATION)",
             # "No Country for Old Men": "",
-            "Schindler's List": "((PROLOGUE|CHAPTER|EPILOGUE).*)",
-            "The Bourne Supremacy": "(([0-9]|[0-9][0-9])$)",
-            "The Shining": "(<< [0-9]* >>)",
+            # "Schindler's List": "((PROLOGUE|CHAPTER|EPILOGUE).*)",
+            # "The Bourne Supremacy": "(([0-9]|[0-9][0-9])$)",
+            # "The Shining": "(<< [0-9]* >>)",
             "The Talented Mr. Ripley": "(Chapter *)",
-            "The Wizard of Oz": "([0-9]*\. *)"
+            # "The Wizard of Oz": "([0-9]*\. *)"
         }
 
         self.stories = list()
@@ -41,7 +41,7 @@ class StoryController:
             story = Story(title, self.script_regexs[title], self.book_regexs[title], title)
             self.stories.append(story)
 
-            for scene in story.script.scenes:
+            for scene in story.script.valid_scenes:
                 if len(scene.full_text) > 1000:
                     scene.extract_named_entities()
 

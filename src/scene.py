@@ -52,10 +52,9 @@ class Scene:
             for quote in self.dialogue[character]:
                 doc = NER().run(quote.strip())
 
-                pprint([(X.text, X.label_) for X in doc.ents])
+                # pprint([(X.text, X.label_) for X in doc.ents])
 
 
         # dialogue_text = self.dialogue.values()
 
         # pprint([(X.text, X.label_) for X in doc.ents])
-

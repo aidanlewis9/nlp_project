@@ -18,7 +18,7 @@ class Story:
         self.script = Script(path, script_regex)
 
         # get book
-        self.book = Book(path, book_regex, title)
+        self.book = Book(path, book_regex, title, len(self.script.valid_scenes))
 
     def format_movie_name(self):
         return strip_nonalphanumeric(self.name).replace(self.SPACE, self.UNDERSCORE)
