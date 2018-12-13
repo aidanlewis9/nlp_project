@@ -32,6 +32,9 @@ class Scene:
         self.dialogue[limit_whitespace(character).title()].append(self.format_quote(quote))
         self.dialogue_count += 1
 
+    def add_to_scene(self, scene):
+        self.sentences.extend(scene.sentences)
+
     def format_quote(self, quote):
         return re.sub("[\(\[].*?[\)\]]", "", limit_whitespace(quote))
 
