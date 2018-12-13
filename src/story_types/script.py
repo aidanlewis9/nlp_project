@@ -1,10 +1,10 @@
-from characters.character_controller import CharacterController
 from scenes.scene import Scene
+from story_types.story_type import StoryType
 from utilities.file import read_file
 from utilities.string import format_character, format_quote, match, is_empty
 
 
-class Script:
+class Script(StoryType):
     def __init__(self, path, regex):
         self.PATH_SUFFIX = "script.txt"
         self.EMPTY_STRING = ""
@@ -12,37 +12,30 @@ class Script:
         self.NEWLINE = '\n'
         self.QUOTE = '"'
 
-        self.regex = regex
+        StoryType.__init__(self, regex)
         self.path = path + self.PATH_SUFFIX
-
-        self.all_scenes = list()
-        self.valid_scenes = list()
-
-        self.character_controller = CharacterController()
 
         self.get_scenes()
         self.extract_dialogue()
 
-        self.character_controller.drop_irrelevant_characters()
+        self.sc.clean()
+        self.cc.clean()
 
-    def get_characters(self):
-        return self.character_controller.characters
-
-    def get_quotes(self, character):
-        return self.character_controller.characters[character].quotes
+    def scene_count(self):
+        return len(self.sc.scenes)
 
     def get_scenes(self):
         scene = Scene()
 
         for line in read_file(self.path):
             if match(self.regex, line):
-                self.all_scenes.append(scene)
+                self.sc.add(scene)
                 scene = Scene()
 
             scene.add_line(line)
 
     def extract_dialogue(self):
-        for scene in self.all_scenes:
+        for scene in self.sc.scenes:
             lines = scene.lines
             n = len(lines) - 1
             i = 0
@@ -61,12 +54,9 @@ class Script:
                     quote = format_quote(quote)
 
                     scene.add_dialogue(character, quote)
-                    self.character_controller.add_quote(character, quote)
+                    self.cc.add_quote(character, quote)
 
                 i += 1
-
-            if scene.is_valid():
-                self.valid_scenes.append(scene)
 
 
 

@@ -39,7 +39,7 @@ class Scene:
     def concat_sentences(self, string):
         self.sentence_string += string
 
-    def is_valid(self):
+    def is_necessary(self):
         return self.dialogue_count > self.THRESHOLD
 
     def extract_named_entities(self):

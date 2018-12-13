@@ -1,29 +1,38 @@
+import json
+import math
+import operator
+
+from characters.character import Character
+from story_types.story_type import StoryType
 from utilities.file import read_file
-from utilities.string import match
+from utilities.string import match, format_movie_name
 from scenes.scene import Scene
 from utilities.parser import Parser
-import math
 
 
-class Book:
+class Book(StoryType):
     def __init__(self, path, regex, title, num_script_scenes):
-        self.PATH_SUFFIX = "book.txt"
+        self.CHARACTER_DATA_FILE = "/book.id.book"
         self.EMPTY_STRING = ""
         self.NEWLINE = '\n'
+        self.PARENT_DIR = "../data/character/"
+        self.PATH_SUFFIX = "book.txt"
         self.QUOTE = '"'
+        self.READ = 'r'
 
-        self.scenes = list()
+        StoryType.__init__(self, regex)
         self.path = path + self.PATH_SUFFIX
-        self.regex = regex
+
         self.parser = Parser(title)
         self.num_script_scenes = num_script_scenes
-        self.sub_scenes = list() # this holds the more finely split chapter scenes
-
-        self.all_scenes = list()
-        self.valid_scenes = list()
+        self.sub_scenes = list()  # this holds the more finely split chapter scenes
 
         self.get_scenes()
         self.divide_book_scenes()
+
+        self.read_json(title)
+
+        self.cc.clean()
 
     def get_scenes(self):
         scene = Scene()
@@ -31,30 +40,26 @@ class Book:
         for line in read_file(self.path):
             if match(self.regex, line):
                 scene.add_sentences(scene.sentence_string)
-                self.all_scenes.append(scene)
+                self.sc.add(scene)
+
                 scene = Scene()
             self.parser.parse_book(line, scene)
 
     def divide_book_scenes(self):
-        if len(self.all_scenes) > self.num_script_scenes:
+        if len(self.sc.scenes) > self.num_script_scenes:
             self.handle_more_chapters_than_scenes()
-        elif len(self.all_scenes) == self.num_script_scenes:
-            self.sub_scenes = self.all_scenes
+            self.sc.scenes[:] = self.sub_scenes[:]
         else:
             self.handle_more_scenes_than_chapters()
-
-        # for i, scene in enumerate(self.sub_scenes):
-        #     print("SUBSCENE", i, "------------------------------" )
-        #     for sentence in scene.sentences:
-        #         print(sentence)
+            self.sc.scenes[:] = self.sub_scenes[:]
 
     def handle_more_scenes_than_chapters(self):
-        sentence_counts = dict() # scene: count
-        sentence_props = dict() # scene : proportion
+        sentence_counts = dict()  # scene: count
+        sentence_props = dict()  # scene : proportion
         total_sentences = 0
 
         # store the number of sentences in each scene and the total number of sentences
-        for scene in self.all_scenes:
+        for scene in self.sc.scenes:
             if len(scene.sentences) > 0:
                 sentence_counts[scene] = len(scene.sentences)
                 total_sentences += len(scene.sentences)
@@ -92,7 +97,7 @@ class Book:
                 last_sent_num += num_sentences_per_scene
 
     def handle_more_chapters_than_scenes(self):
-        self.sub_scenes = self.all_scenes
+        self.sub_scenes = self.sc.scenes
         total_scenes = len(self.sub_scenes)
         sentence_counts = dict()
         for scene in self.sub_scenes:
@@ -112,28 +117,22 @@ class Book:
                 del self.sub_scenes[i]
                 break
 
+    def get_path(self, current_dir):
+        return self.PARENT_DIR + current_dir + self.CHARACTER_DATA_FILE
 
-    def extract_dialogue(self):
-        for scene in self.all_scenes:
-            curr_quote = self.EMPTY_STRING
-            in_quote = False
+    def get_character_name(self, names):
+        names_dict = {name['n']: name['c'] for name in names}
+        return max(names_dict.items(), key=operator.itemgetter(1))[0]
 
-            for line in scene.lines:
-                for char in line:
-                    if char == self.QUOTE and not in_quote:
-                        print("START", char)
-                        in_quote = True
-                    elif char == self.QUOTE and in_quote:
-                        print("END")
-                        scene.add_dialogue(None, curr_quote)
-                        curr_quote = self.EMPTY_STRING
-                        in_quote = False
+    def read_json(self, story_name):
+        with open(self.get_path(format_movie_name(story_name)), self.READ) as f:
+            data = json.load(f)
 
-                    if in_quote:
-                        print(char)
-                        curr_quote += char
-                    else:
-                        print()
+            for character in data['characters']:
+                character_name = self.get_character_name(character['names'])
+                new_character = Character()
 
-            if scene.is_scene():
-                self.valid_scenes.append(scene)
+                new_character.add_names(character['names'])
+                new_character.add_quotes(character['speaking'])
+
+                self.cc.add_character(character_name, new_character)

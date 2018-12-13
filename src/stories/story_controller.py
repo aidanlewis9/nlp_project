@@ -1,11 +1,11 @@
 from analysis.word_embeddings import WordEmbeddings
-from story import Story
+from stories.story import Story
 
 
 class StoryController:
     def __init__(self):
         self.titles = [
-            "Frankenstein",
+            # "Frankenstein",
             "Jurassic Park",
             # "No Country for Old Men",
             "Schindler's List",
@@ -44,16 +44,9 @@ class StoryController:
 
     def run_word_embeddings(self):
         for story in self.stories:
-
-            for character in story.script.get_characters():
-                print("Character: |{}|".format(character))
-                print("Quotes:")
-                for i, quote in enumerate(story.script.get_quotes(character)):
-                    print("{}. |{}|".format(i + 1, quote))
-                print("\n---------------------------------------------------------")
+            print("Story: {}".format(story.name))
 
             we = WordEmbeddings(story)
-            we.setup()
             we.run()
 
             break

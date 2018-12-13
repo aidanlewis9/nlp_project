@@ -1,4 +1,4 @@
-from story_controller import StoryController
+from stories.story_controller import StoryController
 
 
 if __name__ == "__main__":

@@ -1,14 +1,12 @@
-from script import Script
-from book import Book
-from utilities.string import strip_nonalphanumeric
+from story_types.script import Script
+from story_types.book import Book
+from utilities.string import format_movie_name
 
 
 class Story:
     def __init__(self, name, script_regex, book_regex, title):
         self.ROOT_DIRECTORY = "../"
         self.DATA_PATH = self.ROOT_DIRECTORY + "data/test/"
-        self.SPACE = ' '
-        self.UNDERSCORE = '_'
         self.FORWARD_SLASH = "/"
 
         self.name = name
@@ -18,10 +16,7 @@ class Story:
         self.script = Script(path, script_regex)
 
         # get book
-        self.book = Book(path, book_regex, title, len(self.script.valid_scenes))
-
-    def format_movie_name(self):
-        return strip_nonalphanumeric(self.name).replace(self.SPACE, self.UNDERSCORE)
+        self.book = Book(path, book_regex, title, self.script.scene_count())
 
     def get_path(self):
-        return self.DATA_PATH + self.format_movie_name() + self.FORWARD_SLASH
+        return self.DATA_PATH + format_movie_name(self.name) + self.FORWARD_SLASH
