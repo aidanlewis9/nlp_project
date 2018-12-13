@@ -1,7 +1,7 @@
 from utilities.file import read_file
 from utilities.string import match
-from scene import Scene
-from parser import Parser
+from scenes.scene import Scene
+from utilities.parser import Parser
 import math
 
 
@@ -34,7 +34,6 @@ class Book:
                 self.all_scenes.append(scene)
                 scene = Scene()
             self.parser.parse_book(line, scene)
-
 
     def divide_book_scenes(self):
         if len(self.all_scenes) > self.num_script_scenes:

@@ -1,6 +1,7 @@
-from scene import Scene
+from characters.character_controller import CharacterController
+from scenes.scene import Scene
 from utilities.file import read_file
-from utilities.string import match, is_empty
+from utilities.string import format_character, format_quote, match, is_empty
 
 
 class Script:
@@ -17,8 +18,18 @@ class Script:
         self.all_scenes = list()
         self.valid_scenes = list()
 
+        self.character_controller = CharacterController()
+
         self.get_scenes()
         self.extract_dialogue()
+
+        self.character_controller.drop_irrelevant_characters()
+
+    def get_characters(self):
+        return self.character_controller.characters
+
+    def get_quotes(self, character):
+        return self.character_controller.characters[character].quotes
 
     def get_scenes(self):
         scene = Scene()
@@ -39,15 +50,18 @@ class Script:
             while i < n:
                 if lines[i].isupper() and not is_empty(lines[i + 1]) \
                         and self.EXCLAMATION_POINT not in lines[i]:
-                    character = lines[i]
+                    character = format_character(lines[i])
                     i += 1
-                    dialogue = ""
+                    quote = ""
 
                     while i < n and not is_empty(lines[i]):
-                        dialogue += lines[i] + self.NEWLINE
+                        quote += lines[i] + self.NEWLINE
                         i += 1
 
-                    scene.add_dialogue(character, dialogue)
+                    quote = format_quote(quote)
+
+                    scene.add_dialogue(character, quote)
+                    self.character_controller.add_quote(character, quote)
 
                 i += 1
 

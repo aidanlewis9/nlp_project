@@ -42,9 +42,18 @@ class StoryController:
             story = Story(title, self.script_regexs[title], self.book_regexs[title], title)
             self.stories.append(story)
 
+    def run_word_embeddings(self):
+        for story in self.stories:
 
-            for scene in story.script.valid_scenes:
-                if len(scene.full_text) > 1000:
-                    scene.extract_named_entities()
+            for character in story.script.get_characters():
+                print("Character: |{}|".format(character))
+                print("Quotes:")
+                for i, quote in enumerate(story.script.get_quotes(character)):
+                    print("{}. |{}|".format(i + 1, quote))
+                print("\n---------------------------------------------------------")
 
-                    
+            we = WordEmbeddings(story)
+            we.setup()
+            we.run()
+
+            break

@@ -1,11 +1,9 @@
 from pprint import pprint
 
 from analysis.ner import NER
-from utilities.string import limit_whitespace
 
 from collections import defaultdict
 from nltk.tokenize.punkt import PunktSentenceTokenizer
-import re
 
 
 class Scene:
@@ -28,14 +26,11 @@ class Scene:
         self.lines.append(line)
 
     def add_dialogue(self, character, quote):
-        self.dialogue[limit_whitespace(character).title()].append(self.format_quote(quote))
+        self.dialogue[character].append(quote)
         self.dialogue_count += 1
 
     def add_to_scene(self, scene):
         self.sentences.extend(scene.sentences)
-
-    def format_quote(self, quote):
-        return re.sub("[\(\[].*?[\)\]]", "", limit_whitespace(quote))
 
     def add_sentences(self, text):
         tokenizer = PunktSentenceTokenizer()
