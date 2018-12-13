@@ -1,3 +1,4 @@
+from analysis.word_embeddings import WordEmbeddings
 from story import Story
 
 
@@ -41,10 +42,9 @@ class StoryController:
             story = Story(title, self.script_regexs[title], self.book_regexs[title], title)
             self.stories.append(story)
 
+
             for scene in story.script.valid_scenes:
                 if len(scene.full_text) > 1000:
                     scene.extract_named_entities()
 
-                    # break
-
-            # break
+                    
