@@ -21,9 +21,6 @@ class Script(StoryType):
         self.sc.clean()
         self.cc.clean()
 
-    def scene_count(self):
-        return len(self.sc.scenes)
-
     def get_scenes(self):
         scene = Scene()
 

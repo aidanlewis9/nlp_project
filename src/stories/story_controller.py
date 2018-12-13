@@ -44,9 +44,7 @@ class StoryController:
 
     def run_word_embeddings(self):
         for story in self.stories:
-            print("Story: {}".format(story.name))
-
             we = WordEmbeddings(story)
-            we.run()
+            score = we.run()
 
-            break
+            print("Movie: {} | Score: {}".format(story.name, score))

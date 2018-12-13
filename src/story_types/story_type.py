@@ -15,6 +15,12 @@ class StoryType:
     def get_quotes(self, character):
         return self.cc.get_quotes(character)
 
+    def scene_count(self):
+        return len(self.sc.scenes)
+
+    def quote_count(self):
+        return self.cc.total_quotes
+
     def __str__(self):
         s = str()
 
