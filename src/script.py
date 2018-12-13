@@ -51,7 +51,7 @@ class Script:
 
                 i += 1
 
-            if scene.is_scene():
+            if scene.is_valid():
                 self.valid_scenes.append(scene)
 
 

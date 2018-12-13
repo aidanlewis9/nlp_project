@@ -3,23 +3,22 @@ from pprint import pprint
 from analysis.ner import NER
 from utilities.string import limit_whitespace
 
-from collections import defaultdict, Counter
+from collections import defaultdict
 from nltk.tokenize.punkt import PunktSentenceTokenizer
 import re
 
 
 class Scene:
     def __init__(self):
+        self.THRESHOLD = 5
+
         self.sentence_string = str()
         self.lines = list()
         self.full_text = ""
 
-        self.words_spoken = Counter()
-        self.speakers = dict()  # proportion of scene dialogue
-        self.spoken_about = Counter()  # number of times spoken about
-
         self.dialogue = defaultdict(list)
         self.dialogue_text = ""
+        self.dialogue_count = 0
 
         self.sentences = list()
         self.named_entities = set()
@@ -31,6 +30,7 @@ class Scene:
     def add_dialogue(self, character, quote):
         # print(character)
         self.dialogue[limit_whitespace(character).title()].append(self.format_quote(quote))
+        self.dialogue_count += 1
 
     def format_quote(self, quote):
         return re.sub("[\(\[].*?[\)\]]", "", limit_whitespace(quote))
@@ -41,6 +41,9 @@ class Scene:
 
     def concat_sentences(self, string):
         self.sentence_string += string
+
+    def is_valid(self):
+        return self.dialogue_count > self.THRESHOLD
 
     def extract_named_entities(self):
         # doc = NER().run(self.dialogue_text)
