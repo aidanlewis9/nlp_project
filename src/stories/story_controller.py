@@ -1,4 +1,4 @@
-from analysis.word_embeddings import WordEmbeddings
+from analysis.character_matching import CharacterMatching
 from stories.story import Story
 
 
@@ -44,7 +44,7 @@ class StoryController:
 
     def run_word_embeddings(self):
         for story in self.stories:
-            we = WordEmbeddings(story)
+            we = CharacterMatching(story)
             score = we.run()
 
             print("Movie: {} | Score: {}".format(story.name, score))
