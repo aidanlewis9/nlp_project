@@ -1,4 +1,5 @@
 from analysis.character_matching import CharacterMatching
+from analysis.scene_matching import SceneMatching 
 from stories.story import Story
 
 
@@ -46,5 +47,12 @@ class StoryController:
         for story in self.stories:
             we = CharacterMatching(story)
             score = we.run()
+
+            print("Movie: {} | Score: {}".format(story.name, score))
+
+    def run_scene_matching(self):
+        for story in self.stories:
+            sm = SceneMatching(story)
+            score = sm.match_scenes()
 
             print("Movie: {} | Score: {}".format(story.name, score))

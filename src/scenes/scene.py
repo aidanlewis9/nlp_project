@@ -42,6 +42,9 @@ class Scene:
     def is_necessary(self):
         return self.dialogue_count > self.THRESHOLD
 
+    def get_document(self):
+        return " ".join(self.sentences)
+
     def extract_named_entities(self):
         for character in self.dialogue:
             for quote in self.dialogue[character]:
