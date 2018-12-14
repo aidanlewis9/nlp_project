@@ -1,5 +1,6 @@
 from utilities.string import format_quote
 
+
 class Character:
     def __init__(self):
         self.THRESHOLD = 5

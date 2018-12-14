@@ -36,3 +36,7 @@ def format_character(character):
 def format_movie_name(name):
     return strip_nonalphanumeric(name).replace(SPACE, UNDERSCORE)
 
+
+def no_whitespace(s):
+    return limit_whitespace(s).replace(SPACE, EMPTY_STRING)
+
